@@ -1,0 +1,961 @@
+[
+    {
+        "id": "883ac18f7fc1d1f8",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "57545cfa81764af3",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "0ac55a66e3baff51",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "0ac55a66e3baff51",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "1a4f1836afbb78fe",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "7068cb5f94a9e0b8",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1884",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "375311970778837f",
+        "type": "json",
+        "z": "883ac18f7fc1d1f8",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 710,
+        "y": 380,
+        "wires": [
+            [
+                "ba4d92402e842968"
+            ]
+        ]
+    },
+    {
+        "id": "65f0798a9c454023",
+        "type": "inject",
+        "z": "883ac18f7fc1d1f8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 270,
+        "y": 380,
+        "wires": [
+            [
+                "94835f32b8014546"
+            ]
+        ]
+    },
+    {
+        "id": "94835f32b8014546",
+        "type": "function",
+        "z": "883ac18f7fc1d1f8",
+        "name": "calc",
+        "func": "//function for generating a random number\nlet rowNum = global.get(\"rowNum\") || 1;\n\nvar id = Math.floor(Math.random() * 30001);\nvar timestamp = Math.floor(Date.now() / 1000);\n\n//prepare the format to publish on mqtt broker\nmsg.payload = JSON.stringify({\n    \"No.\": rowNum,\n    \"ID\": id,\n    \"TIMESTAMP\": timestamp\n});\n\nrowNum++;\nglobal.set(\"rowNum\", rowNum);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 380,
+        "wires": [
+            [
+                "375311970778837f"
+            ]
+        ]
+    },
+    {
+        "id": "ba4d92402e842968",
+        "type": "csv",
+        "z": "883ac18f7fc1d1f8",
+        "name": "",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "No., ID, TIMESTAMP",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 910,
+        "y": 380,
+        "wires": [
+            [
+                "009f0f941f4f567a",
+                "292471da961e463b"
+            ]
+        ]
+    },
+    {
+        "id": "009f0f941f4f567a",
+        "type": "mqtt out",
+        "z": "883ac18f7fc1d1f8",
+        "name": "publish_mqtt",
+        "topic": "challenge3/id_generator",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "7068cb5f94a9e0b8",
+        "x": 1150,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "292471da961e463b",
+        "type": "file",
+        "z": "883ac18f7fc1d1f8",
+        "name": "csv",
+        "filename": "/home/iotpolimi/Desktop/challenge3/id_log.csv",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 1090,
+        "y": 380,
+        "wires": [
+            [
+                "0f859118485d8538"
+            ]
+        ]
+    },
+    {
+        "id": "0f859118485d8538",
+        "type": "debug",
+        "z": "883ac18f7fc1d1f8",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1300,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "c39c09f639dec552",
+        "type": "inject",
+        "z": "883ac18f7fc1d1f8",
+        "name": "init",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 250,
+        "y": 120,
+        "wires": [
+            [
+                "778cc9826669a054",
+                "7f25ad1158be4f9d"
+            ]
+        ]
+    },
+    {
+        "id": "778cc9826669a054",
+        "type": "function",
+        "z": "883ac18f7fc1d1f8",
+        "name": "reset",
+        "func": "//at every inizialization reset all global variables\nglobal.set(\"Status\", \"RESET\");\nglobal.set(\"ackCount\", 0);\nglobal.set(\"rowNum\", 1);\nglobal.set(\"msgNum\", 0);\nglobal.set(\"rowNumTemp\",0);\nglobal.set(\"myData\",[]);\nglobal.set(\"message\", null);\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7f25ad1158be4f9d",
+        "type": "file in",
+        "z": "883ac18f7fc1d1f8",
+        "name": "read_challenge_3",
+        "filename": "/home/iotpolimi/Downloads/challenge3.csv",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 470,
+        "y": 40,
+        "wires": [
+            [
+                "ac2d0377cb8052fa"
+            ]
+        ]
+    },
+    {
+        "id": "ac2d0377cb8052fa",
+        "type": "csv",
+        "z": "883ac18f7fc1d1f8",
+        "name": "",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 690,
+        "y": 40,
+        "wires": [
+            [
+                "aac547ee459f1a2f"
+            ]
+        ]
+    },
+    {
+        "id": "aac547ee459f1a2f",
+        "type": "function",
+        "z": "883ac18f7fc1d1f8",
+        "name": "read_challenge_3",
+        "func": "//store all rows in my global array for after\nvar dataArray = global.get(\"myData\") || [];\ndataArray.push(msg.payload);\nglobal.set(\"myData\", dataArray);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 40,
+        "wires": [
+            [
+                "f5de792f9f8377df"
+            ]
+        ]
+    },
+    {
+        "id": "f5de792f9f8377df",
+        "type": "debug",
+        "z": "883ac18f7fc1d1f8",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1100,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "e532342d264e26a0",
+        "type": "mqtt in",
+        "z": "883ac18f7fc1d1f8",
+        "name": "subscription",
+        "topic": "challenge3/id_generator",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "7068cb5f94a9e0b8",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 660,
+        "wires": [
+            [
+                "f02bce7c6e79e548"
+            ]
+        ]
+    },
+    {
+        "id": "f02bce7c6e79e548",
+        "type": "function",
+        "z": "883ac18f7fc1d1f8",
+        "name": "check_N",
+        "func": "//function to find out the corresponding message\n//from challenge3.csv\nlet msgNum = global.get(\"msgNum\");\n\nif(msgNum >= 80) {\n    global.set(\"Status\", \"DONE\");\n    node.warn(\"STOP WORKING\")\n    return;\n}\n\nvar parts = msg.payload.split(',');\nvar id = parts[1];\n\nglobal.set(\"SUB_ID\", id);\n\nvar dataArray = global.get(\"myData\");\n\nvar desiredID = id % 7711;\n\n\nvar message = dataArray.filter(function(item) {\n    return parseInt(item[\"No.\"]) === desiredID;\n});\n\n//node.warn(message[0].Info);\n\nmsg.payload = message;\n\nif (!message[0].Info.includes(\"Publish Message\")) {\n    msgNum++;\n    global.set(\"msgNum\", msgNum);\n}\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 660,
+        "wires": [
+            [
+                "a56d54bf787201c0",
+                "c88b6c7a6cc55620",
+                "fdbb83e1af5ef0fb"
+            ]
+        ]
+    },
+    {
+        "id": "a56d54bf787201c0",
+        "type": "function",
+        "z": "883ac18f7fc1d1f8",
+        "name": "publishMsg",
+        "func": "//in case of publish message\nif(global.get(\"Status\") === \"DONE\") {\n    return;\n}\n\nlet msgNum = global.get(\"msgNum\");\nvar message = msg.payload;\nvar dataArray = global.get(\"myData\");\nvar sub_id = global.get(\"SUB_ID\");\n\nif(message && message[0].Info.includes(\"Publish Message\")) {\n    var topics = message[0].Info.match(/\\[([^\\]]+)\\]/g);\n    var payloads;\n    if(message[0].Payload == null) {\n        payloads= \"\";\n    } else {\n        payloads = message[0].Payload.match(/\\{[^{}]+\\}/g)||\"\";\n    }\n\n    topics.forEach(function(topic, i) {\n        var publish = {\n            payload: {\n                \"timestamp\": Math.floor(Date.now() / 1000),\n                \"topic\": topic,\n                \"id\": global.get(\"SUB_ID\"),\n                \"payload\": payloads[i]\n            },\n            topic: topic\n        };\n        //node.warn(publish);\n        msgNum++;\n        global.set(\"msgNum\", msgNum);\n        node.send(publish);        \n    });\n} else {\n    global.set(\"message\", null);\n    return null;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 560,
+        "wires": [
+            [
+                "0f51b35547089642",
+                "5ca96890b4a8e2fb"
+            ]
+        ]
+    },
+    {
+        "id": "0f51b35547089642",
+        "type": "delay",
+        "z": "883ac18f7fc1d1f8",
+        "name": "four msg per minute",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "4",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 940,
+        "y": 560,
+        "wires": [
+            [
+                "169f45aa8c81e2f4",
+                "2c213f5d19e4113b"
+            ]
+        ]
+    },
+    {
+        "id": "5ca96890b4a8e2fb",
+        "type": "debug",
+        "z": "883ac18f7fc1d1f8",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "169f45aa8c81e2f4",
+        "type": "mqtt out",
+        "z": "883ac18f7fc1d1f8",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "7068cb5f94a9e0b8",
+        "x": 1190,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "c88b6c7a6cc55620",
+        "type": "function",
+        "z": "883ac18f7fc1d1f8",
+        "name": "ackMsg",
+        "func": "if(global.get(\"Status\") === \"DONE\") {\n    return;\n}\n\n//in case of ack message\nvar dataArray = global.get(\"myData\");\nvar ackCount = global.get(\"ackCount\");\nvar message = msg.payload;\nvar sub_id = global.get(\"SUB_ID\");\n\nif(message && message[0].Info.includes(\"Ack\")) {\n    ackCount++;\n    var ackRegex = /(Connect|Publish|Subscribe|Unsubscribe)\\sAck/;\n    var msgTypeMatch = message[0].Info.match(ackRegex);\n    var msgType =msgTypeMatch ? msgTypeMatch[0] : null;\n\n    msg.payload = JSON.stringify({\n        \"No.\": ackCount,\n        \"TIMESTAMP\" : Math.floor(Date.now() / 1000),\n        \"SUB_ID\": sub_id,\n        \"MSG_TYPE\": msgType\n    });\n   \n    global.set(\"ackCount\", ackCount);\n    return msg;\n} else {\n    return null;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 760,
+        "wires": [
+            [
+                "dae89be33128f2f6"
+            ]
+        ]
+    },
+    {
+        "id": "dae89be33128f2f6",
+        "type": "json",
+        "z": "883ac18f7fc1d1f8",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 830,
+        "y": 760,
+        "wires": [
+            [
+                "7d75fd29bc832e51"
+            ]
+        ]
+    },
+    {
+        "id": "7d75fd29bc832e51",
+        "type": "csv",
+        "z": "883ac18f7fc1d1f8",
+        "name": "",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "No., TIMESTAMP, SUB_ID, MSG_TYPE",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 970,
+        "y": 760,
+        "wires": [
+            [
+                "9ac5de2501cb5a9c"
+            ]
+        ]
+    },
+    {
+        "id": "9ac5de2501cb5a9c",
+        "type": "file",
+        "z": "883ac18f7fc1d1f8",
+        "name": "write ack_log",
+        "filename": "/home/iotpolimi/Desktop/challenge3/ack_log.csv",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 1130,
+        "y": 760,
+        "wires": [
+            [
+                "6234180aa7b80ce2"
+            ]
+        ]
+    },
+    {
+        "id": "6234180aa7b80ce2",
+        "type": "function",
+        "z": "883ac18f7fc1d1f8",
+        "name": "thingspeak request",
+        "func": "msg.method = \"GET\";\n\nvar API_KEY = \"Q6031M04L4LVMMVM\";\nvar counter = global.get(\"ackCount\");\n\nmsg.url = \"https://api.thingspeak.com/update?api_key=\"+API_KEY+\"&field1=\"+counter;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1330,
+        "y": 760,
+        "wires": [
+            [
+                "1156cd67891de981",
+                "c1970ae1d5bcc065"
+            ]
+        ]
+    },
+    {
+        "id": "1156cd67891de981",
+        "type": "http request",
+        "z": "883ac18f7fc1d1f8",
+        "name": "tingspeak channel",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1530,
+        "y": 760,
+        "wires": [
+            [
+                "7760e76152a8a97c"
+            ]
+        ]
+    },
+    {
+        "id": "7760e76152a8a97c",
+        "type": "debug",
+        "z": "883ac18f7fc1d1f8",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1760,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "c1970ae1d5bcc065",
+        "type": "debug",
+        "z": "883ac18f7fc1d1f8",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1520,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "d29d8e28a2d66505",
+        "type": "complete",
+        "z": "883ac18f7fc1d1f8",
+        "name": "",
+        "scope": [
+            "169f45aa8c81e2f4"
+        ],
+        "uncaught": false,
+        "x": 250,
+        "y": 1100,
+        "wires": [
+            [
+                "99827b52c7dc130f"
+            ]
+        ]
+    },
+    {
+        "id": "99827b52c7dc130f",
+        "type": "function",
+        "z": "883ac18f7fc1d1f8",
+        "name": "temperature",
+        "func": "if(global.get(\"Status\") === \"DONE\") {\n    node.warn(\"STOP WORKING\")\n    return;\n}\n\n//after every mqtt publish message, control if there is a F temperature\nvar message = global.get(\"message\");\nvar data;\n\n//node.warn(message);\n\nif(message) {\n    if(message.payload.payload != null) {\n        data = JSON.parse(message.payload.payload);\n    } else {\n        data = \"\";\n    }\n    \n    //node.warn(data);\n\n    if (data.type === \"temperature\" && data.unit === \"F\") {\n        msg.payload = data;\n        //node.warn(\"FFFFF\");\n        return msg;\n    } else {\n        return null;\n    }\n} else {\n    return null;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 1100,
+        "wires": [
+            [
+                "b89d2876ed5d6d8d",
+                "a3306c4a020157b6",
+                "7d6e7283ae8e62b5"
+            ]
+        ]
+    },
+    {
+        "id": "b89d2876ed5d6d8d",
+        "type": "function",
+        "z": "883ac18f7fc1d1f8",
+        "name": "TempChart",
+        "func": "//creating a msg with the temp mean value for the ui chart\nvar data = msg.payload;\n\nif(data) {\n    let tempRange = data.range;\n    let temp = (tempRange[0] + tempRange[1])/2;\n    \n    //we are setting a unic topic for all tmp received \n    //otherwise the chart is not very clean\n    msg.topic = \" \";   \n    msg.payload = temp;\n    return msg;\n\n} else {\n    return;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 1100,
+        "wires": [
+            [
+                "8a73a244e973d75e"
+            ]
+        ]
+    },
+    {
+        "id": "a3306c4a020157b6",
+        "type": "function",
+        "z": "883ac18f7fc1d1f8",
+        "name": "for filtered_publish.csv",
+        "func": "//for each F temperature read, add that also in filtered_publish.csv\nlet rowNum = global.get(\"rowNumTemp\");\n\nvar data = msg.payload;\n\nvar long = data.long;\nvar meanValue = (data.range[0] + data.range[1])/2;\nvar lat = data.lat;\nvar type = data.type;\nvar unit = data.unit;\nvar descr = data.description;\n\nrowNum++;\nmsg.payload = JSON.stringify ( {\n    \"No.\": rowNum,\n    \"LONG\": long,\n    \"LAT\": lat,\n    \"MEAN_VALUE\": meanValue,\n    \"TYPE\": type,\n    \"UNIT\": unit,\n    \"DESCRIPTION\": descr\n\n});\n\nglobal.set(\"rowNumTemp\", rowNum);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 1200,
+        "wires": [
+            [
+                "b483723e1a69e29e"
+            ]
+        ]
+    },
+    {
+        "id": "8a73a244e973d75e",
+        "type": "ui_chart",
+        "z": "883ac18f7fc1d1f8",
+        "name": "",
+        "group": "57545cfa81764af3",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1170,
+        "y": 1100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b483723e1a69e29e",
+        "type": "json",
+        "z": "883ac18f7fc1d1f8",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 1110,
+        "y": 1200,
+        "wires": [
+            [
+                "03d75f567839adcb"
+            ]
+        ]
+    },
+    {
+        "id": "03d75f567839adcb",
+        "type": "csv",
+        "z": "883ac18f7fc1d1f8",
+        "name": "filtered_publish.csv",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "none",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "No., LONG, LAT, MEAN_VALUE, TYPE, UNIT, DESCRIPTION",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 1310,
+        "y": 1200,
+        "wires": [
+            [
+                "a81831f5dea5e090"
+            ]
+        ]
+    },
+    {
+        "id": "a81831f5dea5e090",
+        "type": "file",
+        "z": "883ac18f7fc1d1f8",
+        "name": "filtered_publish",
+        "filename": "/home/iotpolimi/Desktop/challenge3/filtered_publish.csv",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 1580,
+        "y": 1200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fdbb83e1af5ef0fb",
+        "type": "debug",
+        "z": "883ac18f7fc1d1f8",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "c328fa31c6745075",
+        "type": "inject",
+        "z": "883ac18f7fc1d1f8",
+        "name": "reset_chart",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "x": 1020,
+        "y": 1040,
+        "wires": [
+            [
+                "8a73a244e973d75e"
+            ]
+        ]
+    },
+    {
+        "id": "7d6e7283ae8e62b5",
+        "type": "debug",
+        "z": "883ac18f7fc1d1f8",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "2c213f5d19e4113b",
+        "type": "function",
+        "z": "883ac18f7fc1d1f8",
+        "name": "communication to the temperature function",
+        "func": "if (global.get(\"Status\") === \"DONE\") {\n    node.warn(\"STOP WORKING\");\n    return;\n}\n\n//for every mqtt publish message, update the global variable, used by \"temperature\" function\nglobal.set(\"message\", msg);",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1310,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    }
+]
